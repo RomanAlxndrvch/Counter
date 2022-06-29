@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import classes from './App.module.css'
-import Display from "./components/Display/Display";
-import UniversalButton from "./components/UniverstalButton/UniversalButton";
+
+import {Counter} from "./components/Counter/Counter";
+import {CounterSetter} from "./components/CounterSetter/CounterSetter";
 
 function App() {
 
@@ -18,15 +19,8 @@ function App() {
 
     return (
         <div className={classes.appContainer}>
-            <div className={classes.app}>
-                <div className={classes.displayContainer}>
-                    <Display state={number}/>
-                </div>
-                <div className={classes.btnContainer}>
-                    <UniversalButton title={'INC'} callback={numberInc} state={number}/>
-                    <UniversalButton title={'RESET'} callback={numberReset}/>
-                </div>
-            </div>
+            <CounterSetter/>
+            <Counter number={number} numberInc={numberInc} numberReset={numberReset}/>
         </div>
     );
 }

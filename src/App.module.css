@@ -1,40 +1,10 @@
 .appContainer {
     background-color: #203A58;
-    width: 50vw;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.app {
-    width: 70%;
-    height: 70%;
-    border: 5px #309EC2 solid;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.displayContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    flex: 2;
-}
-
-.btnContainer {
-    flex: 1;
-    width: 90%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    border: 3px #309EC2 solid;
-    border-radius: 10px;
-    margin-bottom: 15px;
 }
+

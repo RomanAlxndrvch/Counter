@@ -1,17 +1,17 @@
-.display {
-    background-color: #309EC2;
+.counterDisplay {
+    background-color: #203A58;
+    border: #309EC2 3px solid;
     width: 90%;
     height: 80%;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
-
 }
 
 .normal {
-    color: #203A58;
+    color: #309EC2;
 }
 
 .max {
