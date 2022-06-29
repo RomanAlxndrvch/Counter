@@ -1,0 +1,19 @@
+.display {
+    background-color: #309EC2;
+    width: 90%;
+    height: 80%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+
+}
+
+.normal {
+    color: #203A58;
+}
+
+.max {
+    color: #F10000;
+}
