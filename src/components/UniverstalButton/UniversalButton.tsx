@@ -4,12 +4,16 @@ import classes from "./UniversalButton.module.css";
 type UniversalButtonType = {
     title: string
     callback: () => void
-    state?: number
+    number?: number
+    maxNumber?: number
+    btnDisabled?: boolean
 }
 
 function UniversalButton(props: UniversalButtonType) {
     return (
-        <button onClick={props.callback} disabled={props.state === 5} className={classes.btn}>{props.title}</button>
+        <button onClick={props.callback}
+                disabled={props.btnDisabled}
+                className={classes.btn}>{props.title}</button>
     )
 }
 

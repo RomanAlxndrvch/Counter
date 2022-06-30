@@ -19,11 +19,11 @@
 
 .btn:disabled,
 .btn[disabled] {
-    background-color: #FF5D5D;
+    background-color: #6F4B46;
 }
 
 .btn:disabled:active {
-    background-color: #FF5D5D;
+    background-color: #6F4B46;
     color: #203A58;
     border: none;
 }
