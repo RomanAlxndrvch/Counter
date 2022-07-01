@@ -1,8 +1,13 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import classes from './CounterSetter.module.css'
 import UniversalButton from "../UniverstalButton/UniversalButton";
+import {log} from "util";
 
 type CounterSetterProps = {
+    StartValue: number
+    MaxValue: number
+    tempStartValue: number
+    tempMaxValue: number
     setMaxValue: (e: number) => void
     setStartValue: (e: number) => void
     setTempStartValue: (e: number) => void
@@ -13,6 +18,11 @@ export function CounterSetter(props: CounterSetterProps) {
     //Local states
     const [localMaxValue, setLocalMaxValue] = useState<number>(0)
     const [localStartValue, setLocalStartValue] = useState<number>(0)
+    const [localBtnDisabled, setLocalBtnDisabled] = useState<boolean>(false)
+
+    useEffect(() => {
+        setLocalBtnDisabled(!localBtnDisabled)
+    }, [localStartValue === props.StartValue && localMaxValue === props.MaxValue])
 
     //Input useState changers(LOCAL)
     const setlMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +62,7 @@ export function CounterSetter(props: CounterSetterProps) {
 
             </div>
             <div className={classes.btnContainer}>
-                <UniversalButton title={'Set'} callback={btnHandler}/>
+                <UniversalButton title={'Set'} callback={btnHandler} btnDisabled={localBtnDisabled}/>
             </div>
         </div>
     )

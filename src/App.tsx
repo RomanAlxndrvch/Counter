@@ -12,15 +12,13 @@ function App() {
 
     const [tempStartValue, setTempStartValue] = useState<number>(Math.pow(21, 12))
     const [tempMaxValue, setTempMaxValue] = useState<number>(Math.pow(21, 12))
-    
+
     useEffect(() => {
         setNumber(startValue)
     }, [startValue])
-
     useEffect(() => {
-        setMaxValue(maxValue)
-    }, [maxValue])
-
+        setBtnDisabled(false)
+    }, [startValue, maxValue])
 
     // Buttons callbacks
     const numberInc = () => {
@@ -34,7 +32,11 @@ function App() {
 
     return (
         <div className={classes.appContainer}>
-            <CounterSetter setMaxValue={setMaxValue}
+            <CounterSetter MaxValue={maxValue}
+                           StartValue={startValue}
+                           tempStartValue={tempStartValue}
+                           tempMaxValue={tempMaxValue}
+                           setMaxValue={setMaxValue}
                            setStartValue={setStartValue}
                            setTempStartValue={setTempStartValue}
                            setTempMaxValue={setTempMaxValue}/>

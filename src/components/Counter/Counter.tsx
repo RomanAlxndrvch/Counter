@@ -13,6 +13,8 @@ type CounterPropsType = {
 }
 
 export function Counter(props: CounterPropsType) {
+
+
     return (
         <div className={classes.counter}>
             <div className={classes.displayContainer}>
