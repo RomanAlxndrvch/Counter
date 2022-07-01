@@ -6,12 +6,11 @@ import {log} from "util";
 type CounterSetterProps = {
     StartValue: number
     MaxValue: number
-    tempStartValue: number
-    tempMaxValue: number
     setMaxValue: (e: number) => void
     setStartValue: (e: number) => void
     setTempStartValue: (e: number) => void
     setTempMaxValue: (e: number) => void
+    setNumber: (e: number) => void
 }
 
 export function CounterSetter(props: CounterSetterProps) {
@@ -38,7 +37,10 @@ export function CounterSetter(props: CounterSetterProps) {
     const btnHandler = () => {
         props.setMaxValue(localMaxValue)
         props.setStartValue(localStartValue)
+        props.setNumber(localStartValue)
     }
+
+    console.log()
 
     return (
         <div className={classes.counterSetter}>

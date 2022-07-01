@@ -10,8 +10,8 @@ function App() {
     const [number, setNumber] = useState<number>(0)
     const [btnDisabled, setBtnDisabled] = useState<boolean>(false)
 
-    const [tempStartValue, setTempStartValue] = useState<number>(Math.pow(21, 12))
-    const [tempMaxValue, setTempMaxValue] = useState<number>(Math.pow(21, 12))
+    const [tempStartValue, setTempStartValue] = useState<number>(0)
+    const [tempMaxValue, setTempMaxValue] = useState<number>(0)
 
     useEffect(() => {
         setNumber(startValue)
@@ -34,18 +34,20 @@ function App() {
         <div className={classes.appContainer}>
             <CounterSetter MaxValue={maxValue}
                            StartValue={startValue}
-                           tempStartValue={tempStartValue}
-                           tempMaxValue={tempMaxValue}
                            setMaxValue={setMaxValue}
                            setStartValue={setStartValue}
+                           setTempMaxValue={setTempMaxValue}
                            setTempStartValue={setTempStartValue}
-                           setTempMaxValue={setTempMaxValue}/>
+                           setNumber={setNumber}/>
+
             <Counter
                 number={number}
                 numberInc={numberInc}
                 numberReset={numberReset}
                 maxNumber={maxValue}
                 startNumber={startValue}
+                tempStartValue={tempStartValue}
+                tempMaxValue={tempMaxValue}
                 btnDisabled={btnDisabled}
             />
         </div>

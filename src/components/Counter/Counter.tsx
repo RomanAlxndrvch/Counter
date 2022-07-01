@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import classes from "../Counter/Counter.module.css";
-import CounterDisplay from "./CounterDisplay/CounterDisplay";
+import CounterDisplay, {TitleType} from "./CounterDisplay/CounterDisplay";
 import UniversalButton from "../UniverstalButton/UniversalButton";
 
 type CounterPropsType = {
@@ -9,20 +9,23 @@ type CounterPropsType = {
     numberReset: () => void
     maxNumber: number
     startNumber: number
+    tempStartValue: number
+    tempMaxValue: number
     btnDisabled: boolean
 }
 
 export function Counter(props: CounterPropsType) {
-
-
     return (
         <div className={classes.counter}>
             <div className={classes.displayContainer}>
                 <CounterDisplay title={props.number}
-                                maxNumber={props.maxNumber}
-                                disabled={props.btnDisabled}
                                 number={props.number}
-                                startNumber={props.startNumber}/>
+                                disabled={props.btnDisabled}
+                                maxNumber={props.maxNumber}
+                                startNumber={props.startNumber}
+                                tempStartNumber={props.tempStartValue}
+                                tempMaxNumber={props.tempMaxValue}/>
+
             </div>
             <div className={classes.btnContainer}>
                 <UniversalButton title={'INC'}

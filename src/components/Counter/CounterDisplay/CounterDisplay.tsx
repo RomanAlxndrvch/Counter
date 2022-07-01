@@ -1,23 +1,44 @@
 import React, {useEffect, useState} from "react";
 import classes from "./CounterDisplay.module.css";
 
-type TitleType = number | "enter values and press 'Set'"
+export type TitleType = number | string
 type DisplayPropsType = {
     title: TitleType
     maxNumber: number
     startNumber: number
     disabled: boolean
     number: number
+    tempStartNumber: number
+    tempMaxNumber: number
 }
 
 function CounterDisplay(props: DisplayPropsType) {
-    const textColor = props.disabled ? classes.max : classes.normal
+    //States
+    const [title, setTitle] = useState<TitleType>("")
 
-    const [title, setTitle] = useState<TitleType>(props.startNumber)
+    // Display font color changer
+    let textColor = classes.normal
+    if (props.maxNumber === props.number) {
+        textColor = classes.max
+    }
+    if (props.startNumber !== props.tempStartNumber || props.maxNumber !== props.tempMaxNumber) {
+        textColor = classes.normal
+    }
+
+    // Use effects
+    useEffect(() => {
+        setTitle("Enter values and press 'Set'")
+    }, [props.startNumber !== props.tempStartNumber ||
+    props.maxNumber !== props.tempMaxNumber])
+
+    useEffect(() => {
+        setTitle(props.number)
+    }, [props.maxNumber])
 
     useEffect(() => {
         setTitle(props.number)
     }, [props.number])
+
 
     return (
         <div className={`${classes.counterDisplay} ${textColor}`}>
