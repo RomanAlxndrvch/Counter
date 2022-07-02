@@ -8,26 +8,32 @@ function App() {
     const [startValue, setStartValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(0)
     const [number, setNumber] = useState<number>(0)
-    const [btnDisabled, setBtnDisabled] = useState<boolean>(false)
-
+    const [btnDisabled, setBtnDisabled] = useState<boolean>(true)
     const [tempStartValue, setTempStartValue] = useState<number>(0)
     const [tempMaxValue, setTempMaxValue] = useState<number>(0)
+    const [error, setError] = useState<boolean>(false)
 
     useEffect(() => {
         setNumber(startValue)
     }, [startValue])
+
     useEffect(() => {
-        setBtnDisabled(false)
-    }, [startValue, maxValue])
+        setError(false)
+        setError(tempStartValue < 0 || tempMaxValue < 0)
+    }, [tempStartValue, tempMaxValue])
+
 
     // Buttons callbacks
     const numberInc = () => {
         setNumber(number + 1)
         number + 1 >= maxValue && setBtnDisabled(!btnDisabled)
+        setError(number + 1 === maxValue)
     }
+
     const numberReset = () => {
         setNumber(startValue)
-        setBtnDisabled(!btnDisabled)
+        setBtnDisabled(false)
+        setError(false)
     }
 
     return (
@@ -38,7 +44,8 @@ function App() {
                            setStartValue={setStartValue}
                            setTempMaxValue={setTempMaxValue}
                            setTempStartValue={setTempStartValue}
-                           setNumber={setNumber}/>
+                           setNumber={setNumber}
+                           setBtnDisabled={setBtnDisabled}/>
 
             <Counter
                 number={number}
@@ -49,6 +56,7 @@ function App() {
                 tempStartValue={tempStartValue}
                 tempMaxValue={tempMaxValue}
                 btnDisabled={btnDisabled}
+                error={error}
             />
         </div>
     );

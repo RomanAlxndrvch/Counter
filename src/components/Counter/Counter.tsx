@@ -12,6 +12,7 @@ type CounterPropsType = {
     tempStartValue: number
     tempMaxValue: number
     btnDisabled: boolean
+    error: boolean
 }
 
 export function Counter(props: CounterPropsType) {
@@ -24,7 +25,8 @@ export function Counter(props: CounterPropsType) {
                                 maxNumber={props.maxNumber}
                                 startNumber={props.startNumber}
                                 tempStartNumber={props.tempStartValue}
-                                tempMaxNumber={props.tempMaxValue}/>
+                                tempMaxNumber={props.tempMaxValue}
+                                error={props.error}/>
 
             </div>
             <div className={classes.btnContainer}>

@@ -11,6 +11,7 @@ type CounterSetterProps = {
     setTempStartValue: (e: number) => void
     setTempMaxValue: (e: number) => void
     setNumber: (e: number) => void
+    setBtnDisabled: (e: boolean) => void
 }
 
 export function CounterSetter(props: CounterSetterProps) {
@@ -18,10 +19,33 @@ export function CounterSetter(props: CounterSetterProps) {
     const [localMaxValue, setLocalMaxValue] = useState<number>(0)
     const [localStartValue, setLocalStartValue] = useState<number>(0)
     const [localBtnDisabled, setLocalBtnDisabled] = useState<boolean>(false)
+    const [underZero, setUnderZero] = useState<boolean>(false)
+    const zeroConditionStyle = {
+        backgroundColor: underZero ? '#D16161' : 'white',
+        border: underZero ? 'red 3px solid' : '',
+        borderRadius: '5px',
+    }
 
-    useEffect(() => {
-        setLocalBtnDisabled(!localBtnDisabled)
-    }, [localStartValue === props.StartValue && localMaxValue === props.MaxValue])
+    // useEffects
+    useEffect(() => { // Turn off 'Set' button when START value bigger than MAX
+        if (localMaxValue <= localStartValue) setLocalBtnDisabled(true)
+        else setLocalBtnDisabled(false)
+    }, [localStartValue, localMaxValue])
+
+    useEffect(() => { // Turn off 'Set' button when values in state and inputs are same
+        localMaxValue === props.MaxValue ? setLocalBtnDisabled(true) : setLocalBtnDisabled(false)
+        localStartValue === props.StartValue ? setLocalBtnDisabled(true) : setLocalBtnDisabled(false)
+    }, [props.MaxValue, props.StartValue])
+
+    useEffect(() => { // Turn off 'Set' button when values in inputs lover than 0
+        if (localMaxValue < 0 || localStartValue < 0) {
+            setLocalBtnDisabled(true)
+            setUnderZero(true)
+        }
+        else {
+            setUnderZero(false)
+        }
+    }, [localStartValue, localMaxValue])
 
     //Input useState changers(LOCAL)
     const setlMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,16 +62,16 @@ export function CounterSetter(props: CounterSetterProps) {
         props.setMaxValue(localMaxValue)
         props.setStartValue(localStartValue)
         props.setNumber(localStartValue)
+        props.setBtnDisabled(false)
     }
-
-    console.log()
 
     return (
         <div className={classes.counterSetter}>
             <div className={classes.inputsContainer}>
 
                 <div className={classes.inputContainer}>
-                    Max value: <input
+                    <span>Max value:</span> <input
+                    style={zeroConditionStyle}
                     onChange={setlMaxValue}
                     value={localMaxValue}
                     className={classes.input}
@@ -55,7 +79,8 @@ export function CounterSetter(props: CounterSetterProps) {
                 </div>
 
                 <div className={classes.inputContainer}>
-                    Start value: <input
+                    <span>Start value:</span><input
+                    style={zeroConditionStyle}
                     onChange={setlStartValue}
                     value={localStartValue}
                     className={classes.input}

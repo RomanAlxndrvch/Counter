@@ -10,6 +10,7 @@ type DisplayPropsType = {
     number: number
     tempStartNumber: number
     tempMaxNumber: number
+    error: boolean
 }
 
 function CounterDisplay(props: DisplayPropsType) {
@@ -18,12 +19,7 @@ function CounterDisplay(props: DisplayPropsType) {
 
     // Display font color changer
     let textColor = classes.normal
-    if (props.maxNumber === props.number) {
-        textColor = classes.max
-    }
-    if (props.startNumber !== props.tempStartNumber || props.maxNumber !== props.tempMaxNumber) {
-        textColor = classes.normal
-    }
+    props.error ? textColor = classes.max : textColor = classes.normal
 
     // Use effects
     useEffect(() => {
@@ -39,6 +35,11 @@ function CounterDisplay(props: DisplayPropsType) {
         setTitle(props.number)
     }, [props.number])
 
+    useEffect(() => {
+        if (props.tempStartNumber < 0 || props.tempMaxNumber < 0) setTitle('Incorrect value!')
+        props.tempStartNumber >= props.tempMaxNumber ?
+            setTitle('Incorrect value!') : setTitle("Enter values and press 'Set'")
+    }, [props.tempStartNumber, props.tempMaxNumber])
 
     return (
         <div className={`${classes.counterDisplay} ${textColor}`}>
