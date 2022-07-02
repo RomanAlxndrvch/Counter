@@ -16,6 +16,7 @@ type DisplayPropsType = {
 function CounterDisplay(props: DisplayPropsType) {
     //States
     const [title, setTitle] = useState<TitleType>("")
+    const [startTitle, setStartTitle] = useState<string>("Enter values and press 'Set'")
 
     // Display font color changer
     let textColor = classes.normal
@@ -36,9 +37,10 @@ function CounterDisplay(props: DisplayPropsType) {
     }, [props.number])
 
     useEffect(() => {
-        if (props.tempStartNumber < 0 || props.tempMaxNumber < 0) setTitle('Incorrect value!')
         props.tempStartNumber >= props.tempMaxNumber ?
             setTitle('Incorrect value!') : setTitle("Enter values and press 'Set'")
+        if (props.tempStartNumber < 0 || props.tempMaxNumber < 0) setTitle('Incorrect value!')
+
     }, [props.tempStartNumber, props.tempMaxNumber])
 
     return (

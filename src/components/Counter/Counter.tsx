@@ -42,4 +42,3 @@ export function Counter(props: CounterPropsType) {
     )
 }
 
-

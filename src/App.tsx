@@ -13,6 +13,7 @@ function App() {
     const [tempMaxValue, setTempMaxValue] = useState<number>(0)
     const [error, setError] = useState<boolean>(false)
 
+
     useEffect(() => {
         setNumber(startValue)
     }, [startValue])
@@ -20,6 +21,8 @@ function App() {
     useEffect(() => {
         setError(false)
         setError(tempStartValue < 0 || tempMaxValue < 0)
+        if (tempStartValue > tempMaxValue) setError(true)
+        if (tempStartValue === tempMaxValue) setError(true)
     }, [tempStartValue, tempMaxValue])
 
 
